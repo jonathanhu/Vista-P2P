@@ -1,0 +1,242 @@
+Xshell for Xmanager Enterprise 4 (Build 0201)
+Copyright (c) 2002-2012 NetSarang Computer, Inc. All rights reserved.
+
+Type `help' to learn how to use Xshell prompt.
+Xshell:\> 
+
+Connecting to 141.143.10.40:22...
+Connection established.
+To escape to local shell, press 'Ctrl+Alt+]'.
+
+
+      ========================= Security Notice =========================
+      =      This system is restricted to Oracle authorized users.      =
+      =  Unauthorized access may result in disciplinary action and/or   =
+      =  civil or criminal penalties. To the extent permitted by law,   =
+      =   use of this system may be monitored in accordance with the    =
+      =             terms of Oracle's Acceptable Use Policy.            =
+      ========================= Security Notice =========================
+
+Last login: Fri Oct 17 00:23:07 2014 from vmohsmili007.oracleoutsourcing.com
+
+
+      =======================================================
+      =                                                     =
+      =     Oracle's Enterprise Linux x86_64 64bit OSCC     =
+      =                                                     =
+      =======================================================
+
+
+
+On this server the vncserver lockdown is enforced by Cloud IT RM Security
+ 
+The VNC Server should be started with the following options and the connections should be established through ssh only.
+
+Please use the following command to start your new vncserver (please stop your exiting one first):
+vncserver [<display>] -nohttpd -localhost -nolisten tcp (nolisten is optional for personal accounts only!)
+ 
+Make sure that the VNC Password follow the Oracle Password Policy. Policy violations will be reported to GIS.
+
+Start using the ssh tunnel as soon as possible, because the VNC port will be blocked on Firewall level soon.
+
+If you do have any further question contact Cloud IT RM or your SDM.
+
+Regards -- Cloud IT RM
+$ rbrun impdba -u apdmilii
+-ksh: rbrun: not found [No such file or directory]
+$ pbrun impdba -u apdmilii
+Successful login using -u option.  If you want to allow X traffic please use -x option.
+Usage: /usr/local/bin/pbrun [policy] -x [target user]
+su from c_cloren to apdmilii at Fri Oct 17 01:21:46 BST 2014
+#########################################################################
+               ARCHITECTURE OF DMILII INSTANCE                           
+               ================================                          
+ Private MT           : vmohsmili008.oracleoutsourcing.com               
+                                                                         
+ DB Node              : vmohsmili002.oracleoutsourcing.com               
+                                                                         
+ Private URL          : https://tigoebsoprod.oracleoutsourcing.com     
+                                                                         
+ Instance Type        : EBSO R12.1.3                                     
+                                                                         
+#########################################################################
+$ cd $XBOL_TOP
+$ PWD
+-ksh: PWD: not found [No such file or directory]
+$ pwd
+/dmilii/applmgr/CUSTOM/xbol/12.0.0
+$ pwd
+/dmilii/applmgr/CUSTOM/xbol/12.0.0
+$ cd patch
+$ pwd
+/dmilii/applmgr/CUSTOM/xbol/12.0.0/patch
+$ unzip XXSV_FA001_00007.zip
+Archive:  XXSV_FA001_00007.zip
+   creating: XXSV_FA001_00007/
+   creating: XXSV_FA001_00007/au/
+   creating: XXSV_FA001_00007/au/reports/
+   creating: XXSV_FA001_00007/au/template/
+   creating: XXSV_FA001_00007/documentacion/
+  inflating: XXSV_FA001_00007/documentacion/XXSV-FA001-00007- CV120.docx  
+  inflating: XXSV_FA001_00007/documentacion/XXSV-FA001-00007-MD050.docx  
+  inflating: XXSV_FA001_00007/documentacion/XXSV_FA001_00007 - TE020 .docx  
+  inflating: XXSV_FA001_00007/documentacion/XXSV_FA001_00007- MD070.doc  
+   creating: XXSV_FA001_00007/xbol/
+   creating: XXSV_FA001_00007/xbol/admin/
+   creating: XXSV_FA001_00007/xbol/admin/import/
+   creating: XXSV_FA001_00007/xbol/bin/
+   creating: XXSV_FA001_00007/xbol/sql/
+  inflating: XXSV_FA001_00007/xbol/sql/grant_bolinf.sql  
+  inflating: XXSV_FA001_00007/xbol/sql/synonym_apps.sql  
+  inflating: XXSV_FA001_00007/xbol/sql/XXSV_P2P_V.sql  
+  inflating: XXSV_FA001_00007/xbol/sql/XXSV_PO_REPORT_UTL.pkb  
+  inflating: XXSV_FA001_00007/xbol/sql/XXSV_PO_REPORT_UTL.pks  
+  inflating: XXSV_FA001_00007/XXSV_FA001_00007.sh  
+$ cd XXSV_FA001_00007
+$ pwd
+/dmilii/applmgr/CUSTOM/xbol/12.0.0/patch/XXSV_FA001_00007
+$ dos2unix XXSV_FA001_00007.sh
+dos2unix: converting file XXSV_FA001_00007.sh to UNIX format ...
+$ chmod -R 777 XXSV_FA001_00007.sh
+$ pwd
+/dmilii/applmgr/CUSTOM/xbol/12.0.0/patch/XXSV_FA001_00007
+$ ./XXSV_FA001_00007.sh
+./XXSV_FA001_00007.sh[1]: ï»¿#: not found [No such file or directory]
+
+                          Oracle LAD eStudio                          
+           Copyright (c) 2012 Entrust San Salvador, El Salvador        
+                        All rights reserved.                          
+Starting installation process for patch XXSV_FA001_00007
+
+Please enter password for APPS user: 
+Connected.
+Please enter password for BOLINF user: 
+Connected.
+------------------------------------------------------------
+Compiling package spec XXSV_PO_REPORT_UTL.pks
+
+SQL*Plus: Release 10.1.0.5.0 - Production on Thu Oct 16 18:32:06 2014
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+CREATE OR REPLACE PACKAGE BOLINF.XXSV_PO_REPORT_UTL AUTHID CURRENT_USER AS
+*
+ERROR at line 1:
+ORA-04021: timeout occurred while waiting to lock object
+
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+------------------------------------------------------------
+Compiling package body XXSV_PO_REPORT_UTL.pkb
+
+SQL*Plus: Release 10.1.0.5.0 - Production on Thu Oct 16 18:47:06 2014
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+CREATE OR REPLACE package body BOLINF.XXSV_PO_REPORT_UTL as
+*
+ERROR at line 1:
+ORA-04021: timeout occurred while waiting to lock object
+
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+------------------------------------------------------------
+Creating View XXSV_P2P_V.pkb
+
+SQL*Plus: Release 10.1.0.5.0 - Production on Thu Oct 16 19:02:06 2014
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+View created.
+
+
+View created.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+------------------------------------------------------------
+Grants from Bolinf grant_bolinf.sql
+
+SQL*Plus: Release 10.1.0.5.0 - Production on Thu Oct 16 19:02:13 2014
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+Grant succeeded.
+
+grant all on XXSV_P2P_V to apps
+             *
+ERROR at line 1:
+ORA-01720: grant option does not exist for 'APPS.GL_CODE_COMBINATIONS_KFV'
+
+
+grant select on XXSV_P2P_V to SV_DWUSER;grant all on GL_CODE_COMBINATIONS_KFV to apps with grant option
+                                       *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+------------------------------------------------------------
+Public synonyms synonym_apps.sql
+
+SQL*Plus: Release 10.1.0.5.0 - Production on Thu Oct 16 19:02:18 2014
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+Synonym created.
+
+
+Synonym created.
+
+
+Synonym created.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
++----------------------------------------------------------+
+|                                                          |
+|      Installation Complete. Please check log files       |
+|                                                          |
++----------------------------------------------------------+
+$ 
+Connection closed by foreign host.
+
+Type `help' to learn how to use Xshell prompt.
+Xshell:\> 
