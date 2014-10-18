@@ -17,7 +17,7 @@ cursor  FLEX_VALUE_DESCRIPTION_DATA( p_FLEX_VALUE_SET_NAME varchar, p_FLEX_VALUE
    from APPS.FND_FLEX_VALUE_SETS FVS1
        ,APPS.FND_FLEX_VALUES FV1
        ,APPS.FND_FLEX_VALUES_TL FVT1
-   where FVS1.FLEX_VALUE_SET_NAME = p_FLEX_VALUE_SET_NAME --'XX_INV_MIC_SEGMENT_VALUES_VS'
+   where FVS1.FLEX_VALUE_SET_NAME = p_FLEX_VALUE_SET_NAME /*'XX_INV_MIC_SEGMENT_VALUES_VS'*/
      AND FVS1.FLEX_VALUE_SET_ID = FV1.FLEX_VALUE_SET_ID
      AND FV1.FLEX_VALUE_ID = FVT1.FLEX_VALUE_ID
      AND FVT1.LANGUAGE = 'US'
@@ -33,12 +33,12 @@ cursor CATEGORY_CODE_data (p_INVENTORY_ITEM_ID number ) is
           FROM APPS.MTL_SYSTEM_ITEMS SI,
                APPS.MTL_ITEM_CATEGORIES IC,
                APPS.MTL_CATEGORIES CT     
-         WHERE SI.ORGANIZATION_ID = 85 --+ MASTER ORG  
-           and SI.INVENTORY_ITEM_ID = p_INVENTORY_ITEM_ID --+ 153408
+         WHERE SI.ORGANIZATION_ID = 85 /* MASTER ORG  */
+           and SI.INVENTORY_ITEM_ID = p_INVENTORY_ITEM_ID /* 153408*/
            AND SI.INVENTORY_ITEM_ID = IC.INVENTORY_ITEM_ID
            AND SI.ORGANIZATION_ID = IC.ORGANIZATION_ID
            AND IC.CATEGORY_ID = CT.CATEGORY_ID
-           AND CT.STRUCTURE_ID = 101 --+ NACIONES UNIDAS      
+           AND CT.STRUCTURE_ID = 101 /* NACIONES UNIDAS */     
            ;
 
 cursor invoice_data (p_PO_DISTRIBUTION_ID number)
@@ -60,7 +60,7 @@ is
           AND AI.CREATED_BY = U.USER_ID
           AND AI.TERMS_ID = T1.TERM_ID
           AND T1.TERM_ID = TL1.TERM_ID
-          AND AID.PO_DISTRIBUTION_ID = p_PO_DISTRIBUTION_ID --+ 397619
+          AND AID.PO_DISTRIBUTION_ID = p_PO_DISTRIBUTION_ID /*397619*/
          GROUP BY AID.PO_DISTRIBUTION_ID
          ;
 
@@ -79,8 +79,74 @@ is
       AND AI.INVOICE_ID = IP.INVOICE_ID
       AND IP.CHECK_ID = CH.CHECK_ID
       AND CH.CREATED_BY = U.USER_ID
-      AND AID.PO_DISTRIBUTION_ID = p_PO_DISTRIBUTION_ID --+ 397619  
+      AND AID.PO_DISTRIBUTION_ID = p_PO_DISTRIBUTION_ID /* 397619  */
       ;
+      
+FUNCTION replace_latin_chr (Pin_string VARCHAR2) as
+   RETURN VARCHAR2
+IS
+   pout_string   VARCHAR2 (4000);
+   special_chr   VARCHAR2 (150);
+   replace_chr   VARCHAR2 (150);
+BEGIN
+   special_chr   :=    CHR (50048)
+                    || CHR (50049)
+                    || CHR (50050)
+                    || CHR (50051)
+                    || CHR (50052)
+                    || CHR (50056)
+                    || CHR (50057)
+                    || CHR (50058)
+                    || CHR (50059)
+                    || CHR (50060)
+                    || CHR (50061)
+                    || CHR (50062)
+                    || CHR (50063)
+                    || CHR (50065)
+                    || CHR (50066)
+                    || CHR (50067)
+                    || CHR (50068)
+                    || CHR (50069)
+                    || CHR (50070)
+                    || CHR (50073)
+                    || CHR (50074)
+                    || CHR (50075)
+                    || CHR (50076)
+                    || CHR (50080)
+                    || CHR (50081)
+                    || CHR (50082)
+                    || CHR (50083)
+                    || CHR (50084)
+                    || CHR (50085)
+                    || CHR (50086)
+                    || CHR (50088)
+                    || CHR (50089)
+                    || CHR (50090)
+                    || CHR (50091)
+                    || CHR (50092)
+                    || CHR (50093)
+                    || CHR (50094)
+                    || CHR (50095)
+                    || CHR (50097)
+                    || CHR (50098)
+                    || CHR (50099)
+                    || CHR (50100)
+                    || CHR (50101)
+                    || CHR (50102)
+                    || CHR (50105)
+                    || CHR (50106)
+                    || CHR (50107)
+                    || CHR (50108)
+                    || CHR (50087)
+                    || CHR (50055);
+
+   replace_chr   := 'AAAAAEEEEIIIINOOOOOUUUUaaaaaaeeeeeiiiinooooouuuucC';
+   pout_string   := TRANSLATE (pin_string, special_chr, replace_chr);
+
+   RETURN pout_string;
+END;
+      
+      
 Function Operating_Units      (P_Operating_Units VARCHAR2) return VARCHAR2 is
 v_Operating_Units VARCHAR2(240);
 begin
@@ -149,8 +215,8 @@ v_POSITION_HIERARCHY_NAME varchar2(30);
 begin
     SELECT PSH.POSITION_HIERARCHY_NAME
     into v_POSITION_HIERARCHY_NAME
-  FROM WF_ITEM_ATTRIBUTE_VALUES IAV,
-       HRFV_POSITION_HIERARCHIES PSH
+  FROM APPS.WF_ITEM_ATTRIBUTE_VALUES IAV,
+       APPS.HRFV_POSITION_HIERARCHIES PSH
  WHERE IAV.NAME = 'APPROVAL_PATH_ID'
    AND IAV.ITEM_TYPE = 'POAPPRV'
    AND PSH.POSITION_HIERARCHY_ID = IAV.NUMBER_VALUE

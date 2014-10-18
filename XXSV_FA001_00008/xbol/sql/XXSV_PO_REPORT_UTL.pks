@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE BOLINF.XXSV_PO_REPORT_UTL AUTHID CURRENT_USER AS
 
-
+FUNCTION replace_latin_chr (Pin_string VARCHAR2) return varchar2;
 function Operating_Units      (P_Operating_Units VARCHAR2) return VARCHAR2;
 Function Solicitante        ( P_Req_Distribution_Id Number ) Return Varchar2;
 Function Numero_Solicitud   ( P_Req_Distribution_Id Number ) Return Varchar2;
